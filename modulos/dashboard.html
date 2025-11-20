@@ -1,0 +1,236 @@
+<!-- ========== MÓDULO 1: DASHBOARD ========== -->
+<section id="viewDashboard">
+    <!-- DASHBOARD ADMIN -->
+    <section id="dashboardAdmin" class="dashboard-section">
+        <!-- Tarjetas de resumen -->
+        <section class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <p class="stat-label">Lotes disponibles</p>
+                    <p class="stat-value">128</p>
+                    <p class="stat-sub">Disponibles para nuevas concesiones</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <p class="stat-label">Lotes ocupados</p>
+                    <p class="stat-value">342</p>
+                    <p class="stat-sub">Ocupación actual del cementerio</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <p class="stat-label">Lotes reservados</p>
+                    <p class="stat-value">56</p>
+                    <p class="stat-sub">Con contrato en vigor</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alertas de contratos -->
+        <section class="mb-4">
+            <h3 class="section-title">Alertas de contratos</h3>
+
+            <div class="alerts-wrapper">
+                <div class="alert-card alert-warning-custom">
+                    <div class="bullet"></div>
+                    <div>
+                        <p class="alert-text">
+                            El contrato del lote <strong>Sector A - 15</strong> vence en <strong>5 días</strong>.
+                        </p>
+                        <p class="alert-sub">Recomendación: contactar a la familia para renovación.</p>
+                    </div>
+                </div>
+
+                <div class="alert-card alert-danger-custom">
+                    <div class="bullet"></div>
+                    <div>
+                        <p class="alert-text">
+                            El contrato del nicho <strong>Columbario 2 - 07</strong> se encuentra <strong>vencido</strong>.
+                        </p>
+                        <p class="alert-sub">Recomendación: revisar lineamientos para recuperación del espacio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Columnas principales admin -->
+        <section class="row g-4 mb-4">
+            <!-- Próximos servicios -->
+            <div class="col-lg-6">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3 class="section-title mb-0">Próximas inhumaciones y exhumaciones</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="service-item">
+                            <div class="service-header">
+                                <span class="service-badge inhumacion">Inhumación</span>
+                                <span class="service-date">15/11/2025 · 10:00 a.m.</span>
+                            </div>
+                            <p class="service-main">
+                                Difunto: <strong>María López Jiménez</strong>
+                            </p>
+                            <p class="service-sub">Sector A · Lote 12</p>
+                        </div>
+
+                        <div class="service-item">
+                            <div class="service-header">
+                                <span class="service-badge exhumacion">Exhumación</span>
+                                <span class="service-date">16/11/2025 · 2:30 p.m.</span>
+                            </div>
+                            <p class="service-main">
+                                Difunto: <strong>Carlos Hernández Rojas</strong>
+                            </p>
+                            <p class="service-sub">Mausoleo B · Nicho 5</p>
+                        </div>
+
+                        <div class="service-empty-text">
+                            * Esta lista es informativa. Los horarios oficiales se gestionan en el módulo de Servicios.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagos + eventos -->
+            <div class="col-lg-6">
+                <!-- Pagos -->
+                <div class="panel-card mb-3">
+                    <div class="panel-header">
+                        <h3 class="section-title mb-0">Pagos pendientes y morosos</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="payment-item">
+                            <div class="payment-header">
+                                <span class="payment-client">José Pérez</span>
+                                <span class="payment-status pendiente">Pendiente</span>
+                            </div>
+                            <p class="payment-lote">Sector C · Lote 8</p>
+                            <div class="payment-meta">
+                                <span>Monto: <strong>₡75 000</strong></span>
+                                <span>Vence: 20/11/2025</span>
+                            </div>
+                        </div>
+
+                        <div class="payment-item">
+                            <div class="payment-header">
+                                <span class="payment-client">Familia Rodríguez</span>
+                                <span class="payment-status moroso">Moroso</span>
+                            </div>
+                            <p class="payment-lote">Columbario 3 · Nicho 14</p>
+                            <div class="payment-meta">
+                                <span>Monto: <strong>₡120 000</strong></span>
+                                <span>Vencido: 18/11/2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eventos -->
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3 class="section-title mb-0">Eventos próximos</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="event-item">
+                            <p class="event-title">Misa conmemorativa mensual</p>
+                            <p class="event-date">19/11/2025 · 6:00 p.m.</p>
+                            <p class="event-desc">Misa general por todos los difuntos del mes.</p>
+                        </div>
+
+                        <div class="event-item">
+                            <p class="event-title">Aniversario luctuoso sector B</p>
+                            <p class="event-date">21/11/2025 · 3:00 p.m.</p>
+                            <p class="event-desc">Conmemoración especial organizada por la administración.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- DASHBOARD CLIENTE -->
+    <section id="dashboardCliente" class="dashboard-section d-none">
+        <!-- Resumen lotes del cliente -->
+        <section class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="stat-card">
+                    <p class="stat-label">Tus lotes activos</p>
+                    <p class="stat-value">2</p>
+                    <p class="stat-sub">Lotes registrados a tu nombre</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="stat-card">
+                    <p class="stat-label">Pagos pendientes</p>
+                    <p class="stat-value">1</p>
+                    <p class="stat-sub">Pagos por regularizar</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="row g-4 mb-4">
+            <div class="col-lg-6">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3 class="section-title mb-0">Tus lotes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="service-item">
+                            <p class="service-main">
+                                Sector B · Lote 21
+                            </p>
+                            <p class="service-sub">
+                                Tipo: Lote familiar — Contrato vigente hasta 12/2028.
+                            </p>
+                        </div>
+                        <div class="service-item">
+                            <p class="service-main">
+                                Columbario 1 · Nicho 4
+                            </p>
+                            <p class="service-sub">
+                                Tipo: Nicho individual — Contrato vigente hasta 05/2027.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="panel-card mb-3">
+                    <div class="panel-header">
+                        <h3 class="section-title mb-0">Tus pagos</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="payment-item">
+                            <div class="payment-header">
+                                <span class="payment-client">Mantenimiento anual</span>
+                                <span class="payment-status pendiente">Pendiente</span>
+                            </div>
+                            <p class="payment-lote">Sector B · Lote 21</p>
+                            <div class="payment-meta">
+                                <span>Monto: <strong>₡50 000</strong></span>
+                                <span>Vence: 25/11/2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3 class="section-title mb-0">Próximos servicios</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="event-item">
+                            <p class="event-title">Misa conmemorativa familiar</p>
+                            <p class="event-date">22/11/2025 · 4:00 p.m.</p>
+                            <p class="event-desc">Servicio reservado para su familia en la capilla principal.</p>
+                        </div>
+                        <div class="service-empty-text">
+                            Para más detalles, favor comunicarse con la administración del cementerio.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>

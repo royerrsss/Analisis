@@ -1,0 +1,145 @@
+<!-- ========== MÓDULO 2: LOTES ========== -->
+<section id="viewLotes">
+    <!-- LOTES ADMIN -->
+    <section id="lotesAdmin" class="dashboard-section">
+        <div class="row mb-3">
+            <div class="col-12 col-lg-8">
+                <p class="section-subtitle">
+                    Inventario general de lotes del cementerio.
+                </p>
+            </div>
+            <div class="col-12 col-lg-4 text-lg-end">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    + Nuevo lote
+                </button>
+            </div>
+        </div>
+
+        <div class="lotes-table-wrapper">
+            <div class="lotes-filters">
+                <div class="d-flex gap-2 flex-wrap">
+                    <select class="form-select form-select-sm lotes-filter-select">
+                        <option>Todos los sectores</option>
+                        <option>Sector A</option>
+                        <option>Sector B</option>
+                        <option>Sector C</option>
+                    </select>
+
+                    <select class="form-select form-select-sm lotes-filter-select">
+                        <option>Todos los estados</option>
+                        <option>Disponible</option>
+                        <option>Ocupado</option>
+                        <option>Reservado</option>
+                        <option>Bloqueado</option>
+                    </select>
+                </div>
+                <div class="lotes-search">
+                    <input type="text" class="form-control form-control-sm"
+                           placeholder="Buscar por código, titular o ubicación">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle lotes-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Ubicación</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Titular</th>
+                            <th>Vencimiento contrato</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>L-A-0012</td>
+                            <td>Sector A · Fila 1 · Lote 12</td>
+                            <td>Lote tradicional</td>
+                            <td><span class="badge-lote estado-disponible">Disponible</span></td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>L-B-0021</td>
+                            <td>Sector B · Fila 3 · Lote 21</td>
+                            <td>Lote familiar</td>
+                            <td><span class="badge-lote estado-ocupado">Ocupado</span></td>
+                            <td>Familia Rodríguez</td>
+                            <td>12/2028</td>
+                        </tr>
+                        <tr>
+                            <td>NC-01-0004</td>
+                            <td>Columbario 1 · Nicho 4</td>
+                            <td>Nicho individual</td>
+                            <td><span class="badge-lote estado-reservado">Reservado</span></td>
+                            <td>José Pérez</td>
+                            <td>05/2027</td>
+                        </tr>
+                        <tr>
+                            <td>M-B-0005</td>
+                            <td>Mausoleo B · Espacio 5</td>
+                            <td>Mausoleo</td>
+                            <td><span class="badge-lote estado-bloqueado">Bloqueado</span></td>
+                            <td>En revisión</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="lotes-note">
+                * Esta tabla es solo de ejemplo visual
+            </p>
+        </div>
+    </section>
+
+    <!-- LOTES CLIENTE -->
+    <section id="lotesCliente" class="dashboard-section d-none">
+        <p class="section-subtitle">
+            Listado de lotes asociados a su contrato.
+        </p>
+
+        <div class="lotes-table-wrapper">
+            <div class="lotes-filters">
+                <div class="lotes-search w-100">
+                    <input type="text" class="form-control form-control-sm"
+                           placeholder="Buscar dentro de sus lotes (por ubicación o tipo)">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle lotes-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Ubicación</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Contrato vigente hasta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>L-B-0021</td>
+                            <td>Sector B · Fila 3 · Lote 21</td>
+                            <td>Lote familiar</td>
+                            <td><span class="badge-lote estado-ocupado">Ocupado</span></td>
+                            <td>12/2028</td>
+                        </tr>
+                        <tr>
+                            <td>NC-01-0004</td>
+                            <td>Columbario 1 · Nicho 4</td>
+                            <td>Nicho individual</td>
+                            <td><span class="badge-lote estado-ocupado">Ocupado</span></td>
+                            <td>05/2027</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="lotes-note">
+                Si requiere cambios o información adicional sobre sus lotes, favor contactar a la administración.
+            </p>
+        </div>
+    </section>

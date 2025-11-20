@@ -1,0 +1,207 @@
+<!-- ========== MÓDULO 8: SOBRE NOSOTROS ========== -->
+<section id="viewSobre">
+
+    <!-- PANEL ADMIN (solo para admin, se oculta por JS al cliente) -->
+    <section id="sobreAdmin" class="dashboard-section mb-4">
+        <div class="row mb-3">
+            <div class="col-12 col-lg-8">
+                <p class="section-subtitle">
+                    Desde aquí el administrador puede actualizar la información institucional:
+                    misión, visión, valores, ubicación y medios de contacto del cementerio.
+                </p>
+            </div>
+            <div class="col-12 col-lg-4 text-lg-end mt-2 mt-lg-0">
+                <button type="button" id="aboutResetBtn" class="btn btn-sm btn-outline-secondary">
+                    Restablecer valores por defecto
+                </button>
+            </div>
+        </div>
+
+        <div class="panel-card">
+            <div class="panel-header">
+                <h3 class="section-title mb-0">Editar información institucional</h3>
+            </div>
+            <div class="panel-body">
+                <form id="aboutForm" class="row g-3" autocomplete="off">
+                    <!-- Datos generales -->
+                    <div class="col-12">
+                        <h4 class="section-subtitle mb-2">Datos del cementerio</h4>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="aboutCemeteryNameInput" class="form-label">Nombre del cementerio</label>
+                        <input type="text" id="aboutCemeteryNameInput" class="form-control"
+                               placeholder="Ej. Cementerio Municipal de Heredia">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="aboutEmailInput" class="form-label">Correo electrónico de contacto</label>
+                        <input type="email" id="aboutEmailInput" class="form-control"
+                               placeholder="Ej. cementerio@municipalidad.go.cr">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="aboutAddressInput" class="form-label">Dirección / ubicación</label>
+                        <input type="text" id="aboutAddressInput" class="form-control"
+                               placeholder="Ej. 200 m norte de la Iglesia Central de Heredia">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="aboutPhonePrimaryInput" class="form-label">Teléfono principal</label>
+                        <input type="text" id="aboutPhonePrimaryInput" class="form-control"
+                               placeholder="Ej. 2277-0000">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="aboutPhoneSecondaryInput" class="form-label">Teléfono secundario</label>
+                        <input type="text" id="aboutPhoneSecondaryInput" class="form-control"
+                               placeholder="Opcional">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="aboutWhatsappInput" class="form-label">WhatsApp</label>
+                        <input type="text" id="aboutWhatsappInput" class="form-control"
+                               placeholder="Opcional">
+                    </div>
+
+                    <!-- Horarios -->
+                    <div class="col-12 pt-2">
+                        <h4 class="section-subtitle mb-2">Horarios de atención</h4>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="aboutScheduleWeekInput" class="form-label">Lunes a viernes</label>
+                        <input type="text" id="aboutScheduleWeekInput" class="form-control"
+                               placeholder="Ej. 8:00 a.m. a 4:30 p.m.">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="aboutScheduleWeekendInput" class="form-label">Sábados, domingos y feriados</label>
+                        <input type="text" id="aboutScheduleWeekendInput" class="form-control"
+                               placeholder="Ej. 8:00 a.m. a 2:00 p.m.">
+                    </div>
+
+                    <!-- Misión, visión, valores -->
+                    <div class="col-12 pt-2">
+                        <h4 class="section-subtitle mb-2">Misión, visión y valores</h4>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="aboutMissionInput" class="form-label">Misión</label>
+                        <textarea id="aboutMissionInput" class="form-control" rows="3"
+                                  placeholder="Redacte la misión institucional"></textarea>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="aboutVisionInput" class="form-label">Visión</label>
+                        <textarea id="aboutVisionInput" class="form-control" rows="3"
+                                  placeholder="Redacte la visión institucional"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="aboutValuesInput" class="form-label">
+                            Valores (uno por línea)
+                        </label>
+                        <textarea id="aboutValuesInput" class="form-control" rows="3"
+                                  placeholder="Ej. Respeto&#10;Empatía&#10;Transparencia"></textarea>
+                    </div>
+
+                    <!-- Notas adicionales -->
+                    <div class="col-12">
+                        <label for="aboutNotesInput" class="form-label">Notas adicionales / información importante</label>
+                        <textarea id="aboutNotesInput" class="form-control" rows="3"
+                                  placeholder="Ej. Indicaciones especiales para fechas conmemorativas, lineamientos de acceso, etc."></textarea>
+                    </div>
+
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Guardar cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANEL PÚBLICO (lo ven admin y cliente) -->
+    <section id="sobrePublic" class="dashboard-section">
+        <div class="panel-card">
+            <div class="panel-header">
+                <h3 class="section-title mb-0" id="aboutCemeteryNameText">
+                    Cementerio Municipal
+                </h3>
+            </div>
+            <div class="panel-body">
+                <!-- Misión y visión -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <h4 class="mini-title">Misión</h4>
+                        <p id="aboutMissionText" class="mb-0">
+                            Texto de misión pendiente de definir.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="mini-title">Visión</h4>
+                        <p id="aboutVisionText" class="mb-0">
+                            Texto de visión pendiente de definir.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Valores -->
+                <div class="mb-3">
+                    <h4 class="mini-title">Valores</h4>
+                    <ul id="aboutValuesList" class="mb-0">
+                        <li>Respeto</li>
+                        <li>Empatía</li>
+                        <li>Servicio a la comunidad</li>
+                    </ul>
+                </div>
+
+                <!-- Datos de contacto -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <h4 class="mini-title">Ubicación</h4>
+                        <p id="aboutAddressText" class="mb-0">
+                            Dirección pendiente de registrar.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="mini-title">Contacto</h4>
+                        <p class="mb-1">
+                            Teléfono principal: <span id="aboutPhonePrimaryText">—</span>
+                        </p>
+                        <p class="mb-1">
+                            Teléfono secundario: <span id="aboutPhoneSecondaryText">—</span>
+                        </p>
+                        <p class="mb-1">
+                            WhatsApp: <span id="aboutWhatsappText">—</span>
+                        </p>
+                        <p class="mb-0">
+                            Correo: <span id="aboutEmailText">—</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Horarios -->
+                <div class="mb-3">
+                    <h4 class="mini-title">Horarios de atención</h4>
+                    <p class="mb-1">
+                        Lunes a viernes: <span id="aboutScheduleWeekText">—</span>
+                    </p>
+                    <p class="mb-0">
+                        Sábados, domingos y feriados: <span id="aboutScheduleWeekendText">—</span>
+                    </p>
+                </div>
+
+                <!-- Notas -->
+                <div class="mb-0">
+                    <h4 class="mini-title">Información importante</h4>
+                    <p id="aboutNotesText" class="mb-0">
+                        No hay notas adicionales registradas por el momento.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

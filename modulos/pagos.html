@@ -1,0 +1,130 @@
+<!-- ========== MÓDULO 5: PAGOS (ADMIN / CLIENTE) ========== -->
+<section id="viewPagos">
+    <!-- PAGOS ADMIN -->
+    <section id="pagosAdmin" class="dashboard-section">
+        <div class="row mb-3">
+            <div class="col-12 col-lg-8">
+                <p class="section-subtitle">
+                    Control de pagos, estados de morosidad y servicios asociados.
+                </p>
+            </div>
+            <div class="col-12 col-lg-4 text-lg-end">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    Registrar pago
+                </button>
+            </div>
+        </div>
+
+        <div class="lotes-table-wrapper">
+            <div class="lotes-filters">
+                <div class="d-flex gap-2 flex-wrap">
+                    <select class="form-select form-select-sm lotes-filter-select">
+                        <option>Todos los estados</option>
+                        <option>Pendiente</option>
+                        <option>Pagado</option>
+                        <option>Moroso</option>
+                    </select>
+                </div>
+                <div class="lotes-search">
+                    <input type="text" class="form-control form-control-sm"
+                           placeholder="Buscar por cliente, lote o recibo">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle lotes-table">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Concepto</th>
+                            <th>Lote / Ubicación</th>
+                            <th>Monto</th>
+                            <th>Vencimiento</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>José Pérez</td>
+                            <td>Mantenimiento anual 2025</td>
+                            <td>Sector B · Lote 21</td>
+                            <td>₡50 000</td>
+                            <td>25/11/2025</td>
+                            <td><span class="badge-pago estado-pendiente">Pendiente</span></td>
+                        </tr>
+                        <tr>
+                            <td>Familia Rodríguez</td>
+                            <td>Renovación contrato</td>
+                            <td>Columbario 3 · Nicho 14</td>
+                            <td>₡120 000</td>
+                            <td>18/11/2025</td>
+                            <td><span class="badge-pago estado-moroso">Moroso</span></td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Fernández</td>
+                            <td>Mantenimiento anual 2024</td>
+                            <td>Sector A · Lote 12</td>
+                            <td>₡40 000</td>
+                            <td>10/01/2025</td>
+                            <td><span class="badge-pago estado-pagado">Pagado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="pagos-note">
+                * Los pagos aquí mostrados son de ejemplo. En el sistema real se integrarán con el módulo de facturación
+                y los estados contables del cementerio.
+            </p>
+        </div>
+    </section>
+
+    <!-- PAGOS CLIENTE -->
+    <section id="pagosCliente" class="dashboard-section d-none">
+        <p class="section-subtitle">
+            Resumen de pagos asociados a sus contratos y servicios.
+        </p>
+
+        <div class="lotes-table-wrapper">
+            <div class="lotes-filters">
+                <div class="lotes-search w-100">
+                    <input type="text" class="form-control form-control-sm"
+                           placeholder="Filtrar por concepto o estado">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle lotes-table">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Lote / Ubicación</th>
+                            <th>Monto</th>
+                            <th>Vencimiento</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mantenimiento anual 2025</td>
+                            <td>Sector B · Lote 21</td>
+                            <td>₡50 000</td>
+                            <td>25/11/2025</td>
+                            <td><span class="badge-pago estado-pendiente">Pendiente</span></td>
+                        </tr>
+                        <tr>
+                            <td>Mantenimiento anual 2024</td>
+                            <td>Sector B · Lote 21</td>
+                            <td>₡50 000</td>
+                            <td>20/11/2024</td>
+                            <td><span class="badge-pago estado-pagado">Pagado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="pagos-note">
+                Para más información sobre métodos de pago o convenios, favor contactar a la administración.
+            </p>
+        </div>
+    </section>

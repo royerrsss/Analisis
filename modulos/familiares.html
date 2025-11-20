@@ -1,0 +1,80 @@
+<!-- ========== MÓDULO 4: FAMILIARES (ADMIN) ========== -->
+<section id="viewFamiliares">
+    <section class="dashboard-section">
+        <div class="row mb-3">
+            <div class="col-12 col-lg-8">
+                <p class="section-subtitle">
+                    Gestión de familiares y contactos asociados a los difuntos y lotes.
+                </p>
+            </div>
+            <div class="col-12 col-lg-4 text-lg-end">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    + Registrar familiar (solo visual)
+                </button>
+            </div>
+        </div>
+
+        <div class="lotes-table-wrapper">
+            <div class="lotes-filters">
+                <div class="d-flex gap-2 flex-wrap">
+                    <select class="form-select form-select-sm lotes-filter-select">
+                        <option>Todos los tipos</option>
+                        <option>Titular de contrato</option>
+                        <option>Contacto secundario</option>
+                        <option>Responsable de pagos</option>
+                    </select>
+                </div>
+                <div class="lotes-search">
+                    <input type="text" class="form-control form-control-sm"
+                           placeholder="Buscar por nombre, teléfono o correo">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle lotes-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre completo</th>
+                            <th>Parentesco</th>
+                            <th>Tipo de contacto</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Lotes asociados</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>José Pérez Molina</td>
+                            <td>Esposo</td>
+                            <td>Titular de contrato</td>
+                            <td>8888-0000</td>
+                            <td>jose.perez@example.com</td>
+                            <td>Sector B · Lote 21</td>
+                        </tr>
+                        <tr>
+                            <td>Ana Rodríguez Salazar</td>
+                            <td>Hija</td>
+                            <td>Responsable de pagos</td>
+                            <td>8456-1234</td>
+                            <td>ana.rodriguez@example.com</td>
+                            <td>Sector B · Lote 21, Columbario 1 · Nicho 4</td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Fernández López</td>
+                            <td>Hermano</td>
+                            <td>Contacto secundario</td>
+                            <td>7012-9876</td>
+                            <td>carlos.fernandez@example.com</td>
+                            <td>Sector A · Lote 12</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="familiares-note">
+                * Desde este módulo se administran los datos de contacto que se utilizarán para notificaciones,
+                renovaciones de contrato y coordinación de servicios.
+            </p>
+        </div>
+    </section>
+</section>
