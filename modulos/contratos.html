@@ -1,33 +1,101 @@
-<!-- ========== MÓDULO 6: CONTRATOS (ADMIN) ========== -->
+<!-- ========== MÓDULO 6: CONTRATOS (ADMIN / PERSONAL) ========== -->
 <section id="viewContratos">
     <section class="dashboard-section">
         <div class="row mb-3">
             <div class="col-12 col-lg-8">
                 <p class="section-subtitle">
-                    Administración de contratos de concesión, nichos y mausoleos.
+                    Administración de contratos de concesión, arrendamiento y propiedad de lotes.
                 </p>
-            </div>
-            <div class="col-12 col-lg-4 text-lg-end">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                    + Nuevo contrato
-                </button>
             </div>
         </div>
 
+        <!-- FORMULARIO NUEVO CONTRATO -->
+        <div class="panel-card mb-3">
+            <div class="panel-header">
+                <h3 class="section-title mb-0">Registrar nuevo contrato</h3>
+            </div>
+            <div class="panel-body">
+                <form id="formNuevoContrato" class="row g-3" autocomplete="off">
+                    <div class="col-12 col-md-6">
+                        <label for="contratoClienteSelect" class="form-label">Cliente / titular</label>
+                        <select id="contratoClienteSelect" class="form-select">
+                            <option value="">Seleccione el cliente</option>
+                            <!-- API: lista de clientes -->
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="contratoLoteSelect" class="form-label">Lote</label>
+                        <select id="contratoLoteSelect" class="form-select">
+                            <option value="">Seleccione el lote</option>
+                            <!-- API: lista de lotes disponibles -->
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="contratoTipoTenenciaSelect" class="form-label">Tipo de tenencia</label>
+                        <select id="contratoTipoTenenciaSelect" class="form-select">
+                            <option value="dueño">Dueño</option>
+                            <option value="arrendatario">Arrendatario</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="contratoFechaInicioInput" class="form-label">Fecha de inicio</label>
+                        <input type="date" id="contratoFechaInicioInput" class="form-control">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="contratoFechaFinInput" class="form-label">Fecha de fin</label>
+                        <input type="date" id="contratoFechaFinInput" class="form-control"
+                               placeholder="Opcional para dueño permanente">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="contratoNumeroInput" class="form-label">Número de contrato</label>
+                        <input type="text" id="contratoNumeroInput" class="form-control"
+                               placeholder="Código de contrato interno">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="contratoEstadoSelect" class="form-label">Estado</label>
+                        <select id="contratoEstadoSelect" class="form-select">
+                            <option value="activo">Activo</option>
+                            <option value="expirado">Expirado</option>
+                            <option value="terminado">Terminado</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="contratoNotasInput" class="form-label">Notas</label>
+                        <textarea id="contratoNotasInput" class="form-control" rows="2"
+                                  placeholder="Condiciones especiales, observaciones o acuerdos adicionales."></textarea>
+                    </div>
+
+                    <!-- En el futuro: upload del PDF del contrato (contract_pdf_path) -->
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Guardar contrato
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTADO CONTRATOS -->
         <div class="lotes-table-wrapper">
             <div class="lotes-filters">
                 <div class="d-flex gap-2 flex-wrap">
-                    <select class="form-select form-select-sm lotes-filter-select">
-                        <option>Todos los tipos</option>
-                        <option>Lote tradicional</option>
-                        <option>Lote familiar</option>
-                        <option>Nicho</option>
-                        <option>Mausoleo</option>
+                    <select id="filtroEstadoContrato" class="form-select form-select-sm lotes-filter-select">
+                        <option value="">Todos los estados</option>
+                        <option value="activo">Activo</option>
+                        <option value="expirado">Expirado</option>
+                        <option value="terminado">Terminado</option>
                     </select>
                 </div>
                 <div class="lotes-search">
-                    <input type="text" class="form-control form-control-sm"
-                           placeholder="Buscar por número de contrato o titular">
+                    <input type="text" id="contratosSearchInput" class="form-control form-control-sm"
+                           placeholder="Buscar por cliente, número de contrato o lote">
                 </div>
             </div>
 
@@ -44,50 +112,14 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>C-2025-001</td>
-                            <td>Familia Rodríguez</td>
-                            <td>Lote familiar</td>
-                            <td>Sector B · Lote 21</td>
-                            <td>01/01/2025</td>
-                            <td>31/12/2028</td>
-                            <td><span class="badge-contrato estado-vigente">Vigente</span></td>
-                        </tr>
-                        <tr>
-                            <td>C-2024-034</td>
-                            <td>José Pérez</td>
-                            <td>Nicho individual</td>
-                            <td>Columbario 1 · Nicho 4</td>
-                            <td>01/06/2024</td>
-                            <td>31/05/2027</td>
-                            <td><span class="badge-contrato estado-vigente">Vigente</span></td>
-                        </tr>
-                        <tr>
-                            <td>C-2021-010</td>
-                            <td>Carlos Fernández</td>
-                            <td>Lote tradicional</td>
-                            <td>Sector A · Lote 12</td>
-                            <td>01/01/2021</td>
-                            <td>31/12/2024</td>
-                            <td><span class="badge-contrato estado-proximo-vencer">Próximo a vencer</span></td>
-                        </tr>
-                        <tr>
-                            <td>C-2018-005</td>
-                            <td>Familia Gómez</td>
-                            <td>Nicho</td>
-                            <td>Columbario 2 · Nicho 7</td>
-                            <td>01/01/2018</td>
-                            <td>31/12/2023</td>
-                            <td><span class="badge-contrato estado-vencido">Vencido</span></td>
-                        </tr>
+                    <tbody id="contratosTableBody">
+                        <!-- Se llenará desde API (lote_cliente + clientes + lotes) -->
                     </tbody>
                 </table>
             </div>
 
             <p class="contratos-note">
-                * El seguimiento de vencimientos es clave para la planificación del espacio físico del cementerio
-                y la gestión de avisos a los titulares.
+                * Los contratos se basan en la tabla lote_cliente, vinculada con clientes y lotes.
             </p>
         </div>
     </section>

@@ -1,31 +1,107 @@
-<!-- ========== MÓDULO 4: FAMILIARES (ADMIN) ========== -->
+<!-- ========== MÓDULO 4: FAMILIARES / CLIENTES (ADMIN / PERSONAL) ========== -->
 <section id="viewFamiliares">
     <section class="dashboard-section">
         <div class="row mb-3">
             <div class="col-12 col-lg-8">
                 <p class="section-subtitle">
-                    Gestión de familiares y contactos asociados a los difuntos y lotes.
+                    Gestión de familiares, titulares de contrato y contactos asociados a los lotes.
                 </p>
-            </div>
-            <div class="col-12 col-lg-4 text-lg-end">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                    + Registrar familiar (solo visual)
-                </button>
             </div>
         </div>
 
+        <!-- FORMULARIO REGISTRAR FAMILIAR / CLIENTE -->
+        <div class="panel-card mb-3">
+            <div class="panel-header">
+                <h3 class="section-title mb-0">Registrar nuevo familiar / cliente</h3>
+            </div>
+            <div class="panel-body">
+                <form id="formNuevoFamiliar" class="row g-3" autocomplete="off">
+                    <div class="col-12 col-md-4">
+                        <label for="famNombreInput" class="form-label">Nombre</label>
+                        <input type="text" id="famNombreInput" class="form-control" required>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="famApellido1Input" class="form-label">Primer apellido</label>
+                        <input type="text" id="famApellido1Input" class="form-control" required>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="famApellido2Input" class="form-label">Segundo apellido</label>
+                        <input type="text" id="famApellido2Input" class="form-control">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="famIdentificacionInput" class="form-label">Identificación</label>
+                        <input type="text" id="famIdentificacionInput" class="form-control" required>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="famTelefonoInput" class="form-label">Teléfono</label>
+                        <input type="text" id="famTelefonoInput" class="form-control">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="famEmailInput" class="form-label">Correo electrónico</label>
+                        <input type="email" id="famEmailInput" class="form-control">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="famDireccionFacturaInput" class="form-label">Dirección de facturación</label>
+                        <textarea id="famDireccionFacturaInput" class="form-control" rows="2"></textarea>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="famContactoEmergenciaNombreInput" class="form-label">Contacto de emergencia</label>
+                        <input type="text" id="famContactoEmergenciaNombreInput" class="form-control"
+                               placeholder="Nombre del contacto de emergencia">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="famContactoEmergenciaTelInput" class="form-label">Teléfono contacto emergencia</label>
+                        <input type="text" id="famContactoEmergenciaTelInput" class="form-control">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="famTipoContactoSelect" class="form-label">Tipo de contacto</label>
+                        <select id="famTipoContactoSelect" class="form-select">
+                            <option value="titular">Titular de contrato</option>
+                            <option value="responsable_pagos">Responsable de pagos</option>
+                            <option value="contacto_secundario">Contacto secundario</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="famEstadoSelect" class="form-label">Estado</label>
+                        <select id="famEstadoSelect" class="form-select">
+                            <option value="activo">Activo</option>
+                            <option value="moroso">Moroso</option>
+                            <option value="litigio">En litigio</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Guardar familiar / cliente
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTADO FAMILIARES / CLIENTES -->
         <div class="lotes-table-wrapper">
             <div class="lotes-filters">
                 <div class="d-flex gap-2 flex-wrap">
-                    <select class="form-select form-select-sm lotes-filter-select">
-                        <option>Todos los tipos</option>
-                        <option>Titular de contrato</option>
-                        <option>Contacto secundario</option>
-                        <option>Responsable de pagos</option>
+                    <select id="filtroTipoContacto" class="form-select form-select-sm lotes-filter-select">
+                        <option value="">Todos los tipos</option>
+                        <option value="titular">Titular de contrato</option>
+                        <option value="responsable_pagos">Responsable de pagos</option>
+                        <option value="contacto_secundario">Contacto secundario</option>
                     </select>
                 </div>
                 <div class="lotes-search">
-                    <input type="text" class="form-control form-control-sm"
+                    <input type="text" id="familiaresSearchInput" class="form-control form-control-sm"
                            placeholder="Buscar por nombre, teléfono o correo">
                 </div>
             </div>
@@ -35,45 +111,21 @@
                     <thead>
                         <tr>
                             <th>Nombre completo</th>
-                            <th>Parentesco</th>
-                            <th>Tipo de contacto</th>
+                            <th>Parentesco / tipo</th>
+                            <th>Rol</th>
                             <th>Teléfono</th>
                             <th>Correo</th>
                             <th>Lotes asociados</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>José Pérez Molina</td>
-                            <td>Esposo</td>
-                            <td>Titular de contrato</td>
-                            <td>8888-0000</td>
-                            <td>jose.perez@example.com</td>
-                            <td>Sector B · Lote 21</td>
-                        </tr>
-                        <tr>
-                            <td>Ana Rodríguez Salazar</td>
-                            <td>Hija</td>
-                            <td>Responsable de pagos</td>
-                            <td>8456-1234</td>
-                            <td>ana.rodriguez@example.com</td>
-                            <td>Sector B · Lote 21, Columbario 1 · Nicho 4</td>
-                        </tr>
-                        <tr>
-                            <td>Carlos Fernández López</td>
-                            <td>Hermano</td>
-                            <td>Contacto secundario</td>
-                            <td>7012-9876</td>
-                            <td>carlos.fernandez@example.com</td>
-                            <td>Sector A · Lote 12</td>
-                        </tr>
+                    <tbody id="familiaresTableBody">
+                        <!-- Se llenará desde API (usuarios + clientes + contratos) -->
                     </tbody>
                 </table>
             </div>
 
             <p class="familiares-note">
-                * Desde este módulo se administran los datos de contacto que se utilizarán para notificaciones,
-                renovaciones de contrato y coordinación de servicios.
+                * La información se cargará desde las tablas usuarios y clientes una vez conectada la API.
             </p>
         </div>
     </section>

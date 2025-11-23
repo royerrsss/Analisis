@@ -55,32 +55,32 @@
                 </div>
 
                 <ul class="nav-links">
-                    <!-- data-roles indica quién lo ve -->
-                    <li data-roles="admin,cliente">
+                    <li data-roles="administrador,personal,cliente">
                         <a href="#" class="active" data-route="dashboard">Inicio</a>
                     </li>
-                    <li data-roles="admin,cliente">
+                    <li data-roles="administrador,personal,cliente">
                         <a href="#" data-route="lotes">Lotes</a>
                     </li>
-                    <li data-roles="admin">
+                    <li data-roles="administrador,personal">
                         <a href="#" data-route="difuntos">Difuntos</a>
                     </li>
-                    <li data-roles="admin">
+                    <li data-roles="administrador,personal">
                         <a href="#" data-route="familiares">Familiares</a>
                     </li>
-                    <li data-roles="admin,cliente">
+                    <li data-roles="administrador,personal,cliente">
                         <a href="#" data-route="pagos">Pagos</a>
                     </li>
-                    <li data-roles="admin">
+                    <li data-roles="administrador,personal">
                         <a href="#" data-route="contratos">Contratos</a>
                     </li>
-                    <li data-roles="admin">
+                    <li data-roles="administrador,personal">
                         <a href="#" data-route="reportes">Reportes</a>
                     </li>
-                    <li data-roles="admin,cliente">
+                    <li data-roles="administrador,personal,cliente">
                         <a href="#" data-route="sobre">Sobre nosotros</a>
                     </li>
                 </ul>
+
 
                 <button id="logoutBtn" class="btn-logout d-none">
                     Cerrar sesión
@@ -112,6 +112,22 @@
             </div>
         </main>
     </div>
+    <!-- PANEL DE DESARROLLO (solo para pruebas) -->
+        <div id="devPanel" class="dev-panel d-none">
+            <div class="dev-panel-header">
+                <span>Dev panel</span>
+                <button id="devPanelClose" type="button">×</button>
+            </div>
+            <div class="dev-panel-body">
+                <p class="dev-panel-title">Entrar como:</p>
+                <button type="button" id="devAdminBtn">Administrador</button>
+                <button type="button" id="devPersonalBtn">Personal</button>
+                <button type="button" id="devClienteBtn">Cliente</button>
+                <hr>
+                <small>Solo para pruebas sin API.</small>
+            </div>
+        </div>
+
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

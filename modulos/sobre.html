@@ -1,207 +1,200 @@
-<!-- ========== MÓDULO 8: SOBRE NOSOTROS ========== -->
+<!-- ========== MÓDULO: SOBRE NOSOTROS ========== -->
 <section id="viewSobre">
 
-    <!-- PANEL ADMIN (solo para admin, se oculta por JS al cliente) -->
-    <section id="sobreAdmin" class="dashboard-section mb-4">
-        <div class="row mb-3">
-            <div class="col-12 col-lg-8">
-                <p class="section-subtitle">
-                    Desde aquí el administrador puede actualizar la información institucional:
-                    misión, visión, valores, ubicación y medios de contacto del cementerio.
+    <!-- VISTA PÚBLICA -->
+    <section id="sobrePublic" class="about-section">
+
+        <!-- HERO -->
+        <div class="about-hero">
+            <div class="about-hero-text">
+                <h2 class="about-hero-title" id="aboutCemeteryNameText">
+                    Cementerio Municipal
+                </h2>
+                <p class="about-hero-subtitle">
+                    Espacio de memoria, respeto y acompañamiento para la comunidad.
                 </p>
-            </div>
-            <div class="col-12 col-lg-4 text-lg-end mt-2 mt-lg-0">
-                <button type="button" id="aboutResetBtn" class="btn btn-sm btn-outline-secondary">
-                    Restablecer valores por defecto
-                </button>
             </div>
         </div>
 
-        <div class="panel-card">
-            <div class="panel-header">
-                <h3 class="section-title mb-0">Editar información institucional</h3>
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="about-main">
+
+            <!-- Misión / Visión -->
+            <div class="about-main-grid">
+                <div class="about-card">
+                    <h3 class="about-section-title">Misión</h3>
+                    <p id="aboutMissionText" class="about-text">
+                        Texto de misión pendiente de definir.
+                    </p>
+                </div>
+                <div class="about-card">
+                    <h3 class="about-section-title">Visión</h3>
+                    <p id="aboutVisionText" class="about-text">
+                        Texto de visión pendiente de definir.
+                    </p>
+                </div>
             </div>
-            <div class="panel-body">
-                <form id="aboutForm" class="row g-3" autocomplete="off">
-                    <!-- Datos generales -->
-                    <div class="col-12">
-                        <h4 class="section-subtitle mb-2">Datos del cementerio</h4>
-                    </div>
 
-                    <div class="col-12 col-md-6">
-                        <label for="aboutCemeteryNameInput" class="form-label">Nombre del cementerio</label>
-                        <input type="text" id="aboutCemeteryNameInput" class="form-control"
-                               placeholder="Ej. Cementerio Municipal de Heredia">
-                    </div>
+            <!-- Valores -->
+            <div class="about-card">
+                <h3 class="about-section-title">Nuestros valores</h3>
+                <p class="about-text about-text-muted">
+                    Principios que guían nuestro servicio a las familias.
+                </p>
+                <ul id="aboutValuesList" class="about-values-list">
+                    <li class="about-value-chip">Respeto</li>
+                    <li class="about-value-chip">Empatía</li>
+                    <li class="about-value-chip">Servicio a la comunidad</li>
+                </ul>
+            </div>
 
-                    <div class="col-12 col-md-6">
-                        <label for="aboutEmailInput" class="form-label">Correo electrónico de contacto</label>
-                        <input type="email" id="aboutEmailInput" class="form-control"
-                               placeholder="Ej. cementerio@municipalidad.go.cr">
-                    </div>
+            <!-- Contacto + Horarios -->
+            <div class="about-main-grid">
+                <div class="about-card">
+                    <h3 class="about-section-title">Ubicación y contacto</h3>
+                    <p class="about-text">
+                        <strong>Ubicación:</strong>
+                        <span id="aboutAddressText">Dirección pendiente de registrar.</span>
+                    </p>
+                    <p class="about-text">
+                        <strong>Teléfono principal:</strong>
+                        <span id="aboutPhonePrimaryText">—</span>
+                    </p>
+                    <p class="about-text">
+                        <strong>Teléfono secundario:</strong>
+                        <span id="aboutPhoneSecondaryText">—</span>
+                    </p>
+                    <p class="about-text">
+                        <strong>WhatsApp:</strong>
+                        <span id="aboutWhatsappText">—</span>
+                    </p>
+                    <p class="about-text">
+                        <strong>Correo:</strong>
+                        <span id="aboutEmailText">—</span>
+                    </p>
+                </div>
 
-                    <div class="col-12">
-                        <label for="aboutAddressInput" class="form-label">Dirección / ubicación</label>
-                        <input type="text" id="aboutAddressInput" class="form-control"
-                               placeholder="Ej. 200 m norte de la Iglesia Central de Heredia">
-                    </div>
+                <div class="about-card">
+                    <h3 class="about-section-title">Horarios de atención</h3>
+                    <p class="about-text">
+                        <strong>Lunes a viernes:</strong>
+                        <span id="aboutScheduleWeekText">—</span>
+                    </p>
+                    <p class="about-text">
+                        <strong>Sábados, domingos y feriados:</strong>
+                        <span id="aboutScheduleWeekendText">—</span>
+                    </p>
+                </div>
+            </div>
 
-                    <div class="col-12 col-md-4">
-                        <label for="aboutPhonePrimaryInput" class="form-label">Teléfono principal</label>
-                        <input type="text" id="aboutPhonePrimaryInput" class="form-control"
-                               placeholder="Ej. 2277-0000">
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <label for="aboutPhoneSecondaryInput" class="form-label">Teléfono secundario</label>
-                        <input type="text" id="aboutPhoneSecondaryInput" class="form-control"
-                               placeholder="Opcional">
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <label for="aboutWhatsappInput" class="form-label">WhatsApp</label>
-                        <input type="text" id="aboutWhatsappInput" class="form-control"
-                               placeholder="Opcional">
-                    </div>
-
-                    <!-- Horarios -->
-                    <div class="col-12 pt-2">
-                        <h4 class="section-subtitle mb-2">Horarios de atención</h4>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="aboutScheduleWeekInput" class="form-label">Lunes a viernes</label>
-                        <input type="text" id="aboutScheduleWeekInput" class="form-control"
-                               placeholder="Ej. 8:00 a.m. a 4:30 p.m.">
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="aboutScheduleWeekendInput" class="form-label">Sábados, domingos y feriados</label>
-                        <input type="text" id="aboutScheduleWeekendInput" class="form-control"
-                               placeholder="Ej. 8:00 a.m. a 2:00 p.m.">
-                    </div>
-
-                    <!-- Misión, visión, valores -->
-                    <div class="col-12 pt-2">
-                        <h4 class="section-subtitle mb-2">Misión, visión y valores</h4>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="aboutMissionInput" class="form-label">Misión</label>
-                        <textarea id="aboutMissionInput" class="form-control" rows="3"
-                                  placeholder="Redacte la misión institucional"></textarea>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="aboutVisionInput" class="form-label">Visión</label>
-                        <textarea id="aboutVisionInput" class="form-control" rows="3"
-                                  placeholder="Redacte la visión institucional"></textarea>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="aboutValuesInput" class="form-label">
-                            Valores (uno por línea)
-                        </label>
-                        <textarea id="aboutValuesInput" class="form-control" rows="3"
-                                  placeholder="Ej. Respeto&#10;Empatía&#10;Transparencia"></textarea>
-                    </div>
-
-                    <!-- Notas adicionales -->
-                    <div class="col-12">
-                        <label for="aboutNotesInput" class="form-label">Notas adicionales / información importante</label>
-                        <textarea id="aboutNotesInput" class="form-control" rows="3"
-                                  placeholder="Ej. Indicaciones especiales para fechas conmemorativas, lineamientos de acceso, etc."></textarea>
-                    </div>
-
-                    <div class="col-12 text-end">
-                        <button type="submit" class="btn btn-sm btn-outline-secondary">
-                            Guardar cambios
-                        </button>
-                    </div>
-                </form>
+            <!-- Notas -->
+            <div class="about-card">
+                <h3 class="about-section-title">Información importante</h3>
+                <p id="aboutNotesText" class="about-text">
+                    No hay notas adicionales registradas por el momento.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- PANEL PÚBLICO (lo ven admin y cliente) -->
-    <section id="sobrePublic" class="dashboard-section">
-        <div class="panel-card">
-            <div class="panel-header">
-                <h3 class="section-title mb-0" id="aboutCemeteryNameText">
-                    Cementerio Municipal
-                </h3>
+    <!-- PANEL ADMIN (SOLO ADMIN/PERSONAL, CLIENTE NO) -->
+    <section id="sobreAdmin" class="about-admin-section d-none">
+        <div class="about-admin-card">
+            <div class="about-admin-header">
+                <div>
+                    <h3 class="about-admin-title">Editar información institucional</h3>
+                    <p class="about-admin-subtitle">
+                        Los cambios que realice aquí se mostrarán en la sección pública “Sobre nosotros”.
+                    </p>
+                </div>
+                <button type="button" id="aboutResetBtn" class="btn btn-sm btn-outline-secondary">
+                    Restablecer
+                </button>
             </div>
-            <div class="panel-body">
-                <!-- Misión y visión -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-6">
-                        <h4 class="mini-title">Misión</h4>
-                        <p id="aboutMissionText" class="mb-0">
-                            Texto de misión pendiente de definir.
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <h4 class="mini-title">Visión</h4>
-                        <p id="aboutVisionText" class="mb-0">
-                            Texto de visión pendiente de definir.
-                        </p>
-                    </div>
+
+            <form id="aboutForm" class="row g-3" autocomplete="off">
+                <!-- Datos generales -->
+                <div class="col-12">
+                    <h4 class="about-admin-group-title">Datos del cementerio</h4>
                 </div>
 
-                <!-- Valores -->
-                <div class="mb-3">
-                    <h4 class="mini-title">Valores</h4>
-                    <ul id="aboutValuesList" class="mb-0">
-                        <li>Respeto</li>
-                        <li>Empatía</li>
-                        <li>Servicio a la comunidad</li>
-                    </ul>
+                <div class="col-12 col-md-6">
+                    <label class="form-label" for="aboutCemeteryNameInput">Nombre del cementerio</label>
+                    <input type="text" id="aboutCemeteryNameInput" class="form-control">
                 </div>
 
-                <!-- Datos de contacto -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-6">
-                        <h4 class="mini-title">Ubicación</h4>
-                        <p id="aboutAddressText" class="mb-0">
-                            Dirección pendiente de registrar.
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <h4 class="mini-title">Contacto</h4>
-                        <p class="mb-1">
-                            Teléfono principal: <span id="aboutPhonePrimaryText">—</span>
-                        </p>
-                        <p class="mb-1">
-                            Teléfono secundario: <span id="aboutPhoneSecondaryText">—</span>
-                        </p>
-                        <p class="mb-1">
-                            WhatsApp: <span id="aboutWhatsappText">—</span>
-                        </p>
-                        <p class="mb-0">
-                            Correo: <span id="aboutEmailText">—</span>
-                        </p>
-                    </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label" for="aboutEmailInput">Correo de contacto</label>
+                    <input type="email" id="aboutEmailInput" class="form-control">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label" for="aboutAddressInput">Dirección / ubicación</label>
+                    <input type="text" id="aboutAddressInput" class="form-control">
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label" for="aboutPhonePrimaryInput">Teléfono principal</label>
+                    <input type="text" id="aboutPhonePrimaryInput" class="form-control">
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label" for="aboutPhoneSecondaryInput">Teléfono secundario</label>
+                    <input type="text" id="aboutPhoneSecondaryInput" class="form-control">
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label" for="aboutWhatsappInput">WhatsApp</label>
+                    <input type="text" id="aboutWhatsappInput" class="form-control">
                 </div>
 
                 <!-- Horarios -->
-                <div class="mb-3">
-                    <h4 class="mini-title">Horarios de atención</h4>
-                    <p class="mb-1">
-                        Lunes a viernes: <span id="aboutScheduleWeekText">—</span>
-                    </p>
-                    <p class="mb-0">
-                        Sábados, domingos y feriados: <span id="aboutScheduleWeekendText">—</span>
-                    </p>
+                <div class="col-12">
+                    <h4 class="about-admin-group-title">Horarios de atención</h4>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label class="form-label" for="aboutScheduleWeekInput">Lunes a viernes</label>
+                    <input type="text" id="aboutScheduleWeekInput" class="form-control">
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label class="form-label" for="aboutScheduleWeekendInput">Sábados, domingos y feriados</label>
+                    <input type="text" id="aboutScheduleWeekendInput" class="form-control">
+                </div>
+
+                <!-- Misión / Visión / Valores -->
+                <div class="col-12">
+                    <h4 class="about-admin-group-title">Misión, visión y valores</h4>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label class="form-label" for="aboutMissionInput">Misión</label>
+                    <textarea id="aboutMissionInput" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label class="form-label" for="aboutVisionInput">Visión</label>
+                    <textarea id="aboutVisionInput" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label" for="aboutValuesInput">Valores (uno por línea)</label>
+                    <textarea id="aboutValuesInput" class="form-control" rows="3"></textarea>
                 </div>
 
                 <!-- Notas -->
-                <div class="mb-0">
-                    <h4 class="mini-title">Información importante</h4>
-                    <p id="aboutNotesText" class="mb-0">
-                        No hay notas adicionales registradas por el momento.
-                    </p>
+                <div class="col-12">
+                    <label class="form-label" for="aboutNotesInput">Notas / información importante</label>
+                    <textarea id="aboutNotesInput" class="form-control" rows="3"></textarea>
                 </div>
-            </div>
+
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                        Guardar cambios
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 </section>

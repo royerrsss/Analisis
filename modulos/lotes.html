@@ -5,36 +5,91 @@
         <div class="row mb-3">
             <div class="col-12 col-lg-8">
                 <p class="section-subtitle">
-                    Inventario general de lotes del cementerio.
+                    Inventario general de lotes del cementerio y registro de nuevos lotes.
                 </p>
-            </div>
-            <div class="col-12 col-lg-4 text-lg-end">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                    + Nuevo lote
-                </button>
             </div>
         </div>
 
+        <!-- FORMULARIO NUEVO LOTE -->
+        <div class="panel-card mb-3">
+            <div class="panel-header">
+                <h3 class="section-title mb-0">Registrar nuevo lote</h3>
+            </div>
+            <div class="panel-body">
+                <form id="formNuevoLote" class="row g-3" autocomplete="off">
+                    <div class="col-12 col-md-4">
+                        <label for="nuevoLoteTipoSelect" class="form-label">Tipo de lote</label>
+                        <select id="nuevoLoteTipoSelect" class="form-select">
+                            <option value="">Seleccione un tipo</option>
+                            <!-- El backend llenará desde tipos_lotes -->
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <label for="nuevoLoteSectorInput" class="form-label">Sector</label>
+                        <input type="text" id="nuevoLoteSectorInput" class="form-control"
+                               placeholder="Ej. A, B, Columbario 1">
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <label for="nuevoLoteFilaInput" class="form-label">Fila</label>
+                        <input type="text" id="nuevoLoteFilaInput" class="form-control"
+                               placeholder="Ej. 1, 2, 3">
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <label for="nuevoLoteNumeroInput" class="form-label">Número de lote</label>
+                        <input type="text" id="nuevoLoteNumeroInput" class="form-control"
+                               placeholder="Ej. 12">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="nuevoLoteEstadoSelect" class="form-label">Estado</label>
+                        <select id="nuevoLoteEstadoSelect" class="form-select">
+                            <option value="disponible">Disponible</option>
+                            <option value="reservado">Reservado</option>
+                            <option value="ocupado">Ocupado</option>
+                            <option value="expirado">Expirado</option>
+                            <option value="mantenimiento">En mantenimiento</option>
+                            <option value="litigio">En litigio</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="nuevoLoteNotasInput" class="form-label">Notas</label>
+                        <textarea id="nuevoLoteNotasInput" class="form-control" rows="2"
+                                  placeholder="Observaciones, referencias adicionales, etc."></textarea>
+                    </div>
+
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Guardar lote
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTADO LOTES ADMIN -->
         <div class="lotes-table-wrapper">
             <div class="lotes-filters">
                 <div class="d-flex gap-2 flex-wrap">
-                    <select class="form-select form-select-sm lotes-filter-select">
-                        <option>Todos los sectores</option>
-                        <option>Sector A</option>
-                        <option>Sector B</option>
-                        <option>Sector C</option>
+                    <select id="filtroSectorLote" class="form-select form-select-sm lotes-filter-select">
+                        <option value="">Todos los sectores</option>
                     </select>
 
-                    <select class="form-select form-select-sm lotes-filter-select">
-                        <option>Todos los estados</option>
-                        <option>Disponible</option>
-                        <option>Ocupado</option>
-                        <option>Reservado</option>
-                        <option>Bloqueado</option>
+                    <select id="filtroEstadoLote" class="form-select form-select-sm lotes-filter-select">
+                        <option value="">Todos los estados</option>
+                        <option value="disponible">Disponible</option>
+                        <option value="ocupado">Ocupado</option>
+                        <option value="reservado">Reservado</option>
+                        <option value="expirado">Expirado</option>
+                        <option value="mantenimiento">En mantenimiento</option>
+                        <option value="litigio">En litigio</option>
                     </select>
                 </div>
                 <div class="lotes-search">
-                    <input type="text" class="form-control form-control-sm"
+                    <input id="lotesSearchInput" type="text" class="form-control form-control-sm"
                            placeholder="Buscar por código, titular o ubicación">
                 </div>
             </div>
@@ -51,45 +106,14 @@
                             <th>Vencimiento contrato</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>L-A-0012</td>
-                            <td>Sector A · Fila 1 · Lote 12</td>
-                            <td>Lote tradicional</td>
-                            <td><span class="badge-lote estado-disponible">Disponible</span></td>
-                            <td>—</td>
-                            <td>—</td>
-                        </tr>
-                        <tr>
-                            <td>L-B-0021</td>
-                            <td>Sector B · Fila 3 · Lote 21</td>
-                            <td>Lote familiar</td>
-                            <td><span class="badge-lote estado-ocupado">Ocupado</span></td>
-                            <td>Familia Rodríguez</td>
-                            <td>12/2028</td>
-                        </tr>
-                        <tr>
-                            <td>NC-01-0004</td>
-                            <td>Columbario 1 · Nicho 4</td>
-                            <td>Nicho individual</td>
-                            <td><span class="badge-lote estado-reservado">Reservado</span></td>
-                            <td>José Pérez</td>
-                            <td>05/2027</td>
-                        </tr>
-                        <tr>
-                            <td>M-B-0005</td>
-                            <td>Mausoleo B · Espacio 5</td>
-                            <td>Mausoleo</td>
-                            <td><span class="badge-lote estado-bloqueado">Bloqueado</span></td>
-                            <td>En revisión</td>
-                            <td>—</td>
-                        </tr>
+                    <tbody id="lotesAdminTableBody">
+                        <!-- Se llena desde la API -->
                     </tbody>
                 </table>
             </div>
 
             <p class="lotes-note">
-                * Esta tabla es solo de ejemplo visual
+                * Esta tabla se llenará con los datos reales una vez conectada la API.
             </p>
         </div>
     </section>
@@ -104,7 +128,7 @@
             <div class="lotes-filters">
                 <div class="lotes-search w-100">
                     <input type="text" class="form-control form-control-sm"
-                           placeholder="Buscar dentro de sus lotes (por ubicación o tipo)">
+                           placeholder="Filtrar dentro de sus lotes">
                 </div>
             </div>
 
@@ -119,21 +143,8 @@
                             <th>Contrato vigente hasta</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>L-B-0021</td>
-                            <td>Sector B · Fila 3 · Lote 21</td>
-                            <td>Lote familiar</td>
-                            <td><span class="badge-lote estado-ocupado">Ocupado</span></td>
-                            <td>12/2028</td>
-                        </tr>
-                        <tr>
-                            <td>NC-01-0004</td>
-                            <td>Columbario 1 · Nicho 4</td>
-                            <td>Nicho individual</td>
-                            <td><span class="badge-lote estado-ocupado">Ocupado</span></td>
-                            <td>05/2027</td>
-                        </tr>
+                    <tbody id="lotesClienteTableBody">
+                        <!-- Se llena desde la API -->
                     </tbody>
                 </table>
             </div>
@@ -143,3 +154,4 @@
             </p>
         </div>
     </section>
+</section>

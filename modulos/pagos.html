@@ -1,33 +1,87 @@
-<!-- ========== MÓDULO 5: PAGOS (ADMIN / CLIENTE) ========== -->
+<!-- ========== MÓDULO 5: PAGOS / FACTURAS (ADMIN / CLIENTE) ========== -->
 <section id="viewPagos">
     <!-- PAGOS ADMIN -->
     <section id="pagosAdmin" class="dashboard-section">
         <div class="row mb-3">
             <div class="col-12 col-lg-8">
                 <p class="section-subtitle">
-                    Control de pagos, estados de morosidad y servicios asociados.
+                    Control de facturas, pagos registrados y estados de morosidad.
                 </p>
-            </div>
-            <div class="col-12 col-lg-4 text-lg-end">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                    Registrar pago
-                </button>
             </div>
         </div>
 
+        <!-- FORMULARIO REGISTRAR PAGO -->
+        <div class="panel-card mb-3">
+            <div class="panel-header">
+                <h3 class="section-title mb-0">Registrar pago</h3>
+            </div>
+            <div class="panel-body">
+                <form id="formNuevoPago" class="row g-3" autocomplete="off">
+                    <div class="col-12 col-md-6">
+                        <label for="pagoFacturaSelect" class="form-label">Factura</label>
+                        <select id="pagoFacturaSelect" class="form-select">
+                            <option value="">Seleccione la factura</option>
+                            <!-- API: facturas pendientes / morosas -->
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <label for="pagoMetodoSelect" class="form-label">Método de pago</label>
+                        <select id="pagoMetodoSelect" class="form-select">
+                            <option value="efectivo">Efectivo</option>
+                            <option value="tarjeta">Tarjeta</option>
+                            <option value="transferencia">Transferencia</option>
+                            <option value="cheque">Cheque</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <label for="pagoMontoInput" class="form-label">Monto</label>
+                        <input type="number" step="0.01" min="0" id="pagoMontoInput" class="form-control"
+                               placeholder="₡0.00">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="pagoFechaInput" class="form-label">Fecha de pago</label>
+                        <input type="date" id="pagoFechaInput" class="form-control">
+                    </div>
+
+                    <div class="col-12 col-md-8">
+                        <label for="pagoReferenciaInput" class="form-label">Número de referencia</label>
+                        <input type="text" id="pagoReferenciaInput" class="form-control"
+                               placeholder="Número de comprobante, transferencia, etc.">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="pagoNotasInput" class="form-label">Notas</label>
+                        <textarea id="pagoNotasInput" class="form-control" rows="2"
+                                  placeholder="Comentarios adicionales sobre el pago."></textarea>
+                    </div>
+
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Guardar pago
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTADO PAGOS / FACTURAS ADMIN -->
         <div class="lotes-table-wrapper">
             <div class="lotes-filters">
                 <div class="d-flex gap-2 flex-wrap">
-                    <select class="form-select form-select-sm lotes-filter-select">
-                        <option>Todos los estados</option>
-                        <option>Pendiente</option>
-                        <option>Pagado</option>
-                        <option>Moroso</option>
+                    <select id="filtroEstadoFactura" class="form-select form-select-sm lotes-filter-select">
+                        <option value="">Todos los estados</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="pagado">Pagado</option>
+                        <option value="moroso">Moroso</option>
+                        <option value="cancelado">Cancelado</option>
                     </select>
                 </div>
                 <div class="lotes-search">
-                    <input type="text" class="form-control form-control-sm"
-                           placeholder="Buscar por cliente, lote o recibo">
+                    <input type="text" id="pagosSearchInput" class="form-control form-control-sm"
+                           placeholder="Buscar por cliente, lote o factura">
                 </div>
             </div>
 
@@ -43,38 +97,14 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>José Pérez</td>
-                            <td>Mantenimiento anual 2025</td>
-                            <td>Sector B · Lote 21</td>
-                            <td>₡50 000</td>
-                            <td>25/11/2025</td>
-                            <td><span class="badge-pago estado-pendiente">Pendiente</span></td>
-                        </tr>
-                        <tr>
-                            <td>Familia Rodríguez</td>
-                            <td>Renovación contrato</td>
-                            <td>Columbario 3 · Nicho 14</td>
-                            <td>₡120 000</td>
-                            <td>18/11/2025</td>
-                            <td><span class="badge-pago estado-moroso">Moroso</span></td>
-                        </tr>
-                        <tr>
-                            <td>Carlos Fernández</td>
-                            <td>Mantenimiento anual 2024</td>
-                            <td>Sector A · Lote 12</td>
-                            <td>₡40 000</td>
-                            <td>10/01/2025</td>
-                            <td><span class="badge-pago estado-pagado">Pagado</span></td>
-                        </tr>
+                    <tbody id="pagosAdminTableBody">
+                        <!-- Se llenará desde API (facturas) -->
                     </tbody>
                 </table>
             </div>
 
             <p class="pagos-note">
-                * Los pagos aquí mostrados son de ejemplo. En el sistema real se integrarán con el módulo de facturación
-                y los estados contables del cementerio.
+                * Los datos se obtendrán desde las tablas facturas y pagos una vez conectada la API.
             </p>
         </div>
     </section>
@@ -82,13 +112,13 @@
     <!-- PAGOS CLIENTE -->
     <section id="pagosCliente" class="dashboard-section d-none">
         <p class="section-subtitle">
-            Resumen de pagos asociados a sus contratos y servicios.
+            Resumen de sus facturas y pagos asociados.
         </p>
 
         <div class="lotes-table-wrapper">
             <div class="lotes-filters">
                 <div class="lotes-search w-100">
-                    <input type="text" class="form-control form-control-sm"
+                    <input type="text" id="pagosClienteSearchInput" class="form-control form-control-sm"
                            placeholder="Filtrar por concepto o estado">
                 </div>
             </div>
@@ -104,27 +134,15 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mantenimiento anual 2025</td>
-                            <td>Sector B · Lote 21</td>
-                            <td>₡50 000</td>
-                            <td>25/11/2025</td>
-                            <td><span class="badge-pago estado-pendiente">Pendiente</span></td>
-                        </tr>
-                        <tr>
-                            <td>Mantenimiento anual 2024</td>
-                            <td>Sector B · Lote 21</td>
-                            <td>₡50 000</td>
-                            <td>20/11/2024</td>
-                            <td><span class="badge-pago estado-pagado">Pagado</span></td>
-                        </tr>
+                    <tbody id="pagosClienteTableBody">
+                        <!-- Se llenará desde API /clientes/mis-facturas -->
                     </tbody>
                 </table>
             </div>
 
             <p class="pagos-note">
-                Para más información sobre métodos de pago o convenios, favor contactar a la administración.
+                Si tiene dudas sobre un pago o factura, favor comunicarse con la administración.
             </p>
         </div>
     </section>
+</section>
