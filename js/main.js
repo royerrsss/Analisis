@@ -183,7 +183,6 @@ function navegarA(route) {
             if (rk === "cliente") {
                 cargarLotesCliente();
             } else {
-                cargarTiposLotes();
                 registrarNuevoLote();
                 cargarLotesAdmin();
             }
@@ -206,18 +205,14 @@ async function cargarDashboard() {
 // LOTES ADMIN / CLIENTE
 // ==============================
 async function cargarLotesAdmin() {
-    const $tbody = $("#lotesAdmin .lotes-table tbody");
+    const $tbody = $("#lotesAdminTableBody");
     if (!$tbody.length) return;
 
-    $tbody.html(`
-        <tr>
-            <td colspan="6">Cargando lotes...</td>
-        </tr>
-    `);
+    $tbody.html(`<tr><td colspan="6">Cargando lotes...</td></tr>`);
 
     try {
-        const res   = await apiRequest("/plots");
-        const plots = res.data || res || [];
+        const res = await apiRequest("/plots");
+        const plots = Array.isArray(res.data) ? res.data : [];
 
         if (!plots.length) {
             $tbody.html(`<tr><td colspan="6">No hay lotes registrados.</td></tr>`);
@@ -255,70 +250,12 @@ async function cargarLotesAdmin() {
 
         $tbody.html(rowsHtml);
     } catch (err) {
-        console.error(err);
+        console.error("Error al cargar lotes:", err);
         $tbody.html(`<tr><td colspan="6">${err.message}</td></tr>`);
     }
 }
 
-async function cargarLotesCliente() {
-    const $tbody = $("#lotesCliente .lotes-table tbody");
-    if (!$tbody.length) return;
 
-    $tbody.html(`
-        <tr>
-            <td colspan="5">Cargando tus lotes...</td>
-        </tr>
-    `);
-
-    try {
-        const res   = await apiRequest("/plots");
-        const plots = res.data || res || [];
-
-        if (!plots.length) {
-            $tbody.html(`<tr><td colspan="5">No tiene lotes asociados.</td></tr>`);
-            return;
-        }
-
-        const rowsHtml = plots.map((plot) => {
-            const code     = `L-${plot.section}-${plot.row_num}-${plot.plot_number}`;
-            const location = `Sector ${plot.section} · Fila ${plot.row_num} · Lote ${plot.plot_number}`;
-            const typeName = plot.type_name || plot.type || "—";
-            const status   = (plot.status || "").toLowerCase() || "—";
-            const endDate  = plot.end_date || plot.contract_end_date || "—";
-
-            return `
-                <tr>
-                    <td>${code}</td>
-                    <td>${location}</td>
-                    <td>${typeName}</td>
-                    <td>${status}</td>
-                    <td>${endDate}</td>
-                </tr>
-            `;
-        }).join("");
-
-        $tbody.html(rowsHtml);
-    } catch (err) {
-        console.error(err);
-        $tbody.html(`<tr><td colspan="5">${err.message}</td></tr>`);
-    }
-}
-
-async function cargarTiposLotes() {
-    try {
-        const res = await apiRequest("/plot-types");
-        const tipos = res.data || res || [];
-
-        const $select = $("#nuevoLoteTipoSelect");
-        $select.html('<option value="">Seleccione un tipo</option>');
-
-        tipos.forEach(t => {
-            $select.append(`<option value="${t.plot_type_id}">${t.name}</option>`);
-        });
-    } catch (err) {
-        console.error("Error al cargar tipos de lotes:", err);
-    }
-}
 
 function registrarNuevoLote() {
     $("#formNuevoLote").on("submit", async function (e) {
