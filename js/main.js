@@ -35,7 +35,7 @@ function getAppRoleKey(userRole) {
 
 function getAppRoleLabel(appRoleKey) {
     switch (appRoleKey) {
-        case "admin":    return "Administrador";
+        case "administrador":    return "Administrador";
         case "personal": return "Personal";
         case "cliente":  return "Cliente";
         default:         return "Usuario";
@@ -120,7 +120,7 @@ function aplicarPermisosNavbar() {
 // ==============================
 function iniciarSesion(user) {
     currentUser = user;
-    localStorage.setItem("cem_user", JSON.stringify(user));
+    localStorage.setItem("cem_user", JSON.stringify(currentUser));
 
     $("#loginView").addClass("d-none");
     $("#registerView").addClass("d-none");
@@ -336,7 +336,7 @@ $(function () {
             return;
         }
 
-        apiRequest("/auth/login", {
+        apiRequest("api.php/auth/login", {
             method: "POST",
             body: JSON.stringify({ email, password })
         })
