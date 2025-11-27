@@ -183,6 +183,8 @@ function navegarA(route) {
             if (rk === "cliente") {
                 cargarLotesCliente();
             } else {
+                cargarTiposLotes();
+                registrarNuevoLote();
                 cargarLotesAdmin();
             }
         }
@@ -301,6 +303,62 @@ async function cargarLotesCliente() {
         $tbody.html(`<tr><td colspan="5">${err.message}</td></tr>`);
     }
 }
+
+async function cargarTiposLotes() {
+    try {
+        const res = await apiRequest("/plot-types");
+        const tipos = res.data || res || [];
+
+        const $select = $("#nuevoLoteTipoSelect");
+        $select.html('<option value="">Seleccione un tipo</option>');
+
+        tipos.forEach(t => {
+            $select.append(`<option value="${t.plot_type_id}">${t.name}</option>`);
+        });
+    } catch (err) {
+        console.error("Error al cargar tipos de lotes:", err);
+    }
+}
+
+function registrarNuevoLote() {
+    $("#formNuevoLote").on("submit", async function (e) {
+        e.preventDefault();
+
+        const tipo       = $("#nuevoLoteTipoSelect").val();
+        const sector     = $("#nuevoLoteSectorInput").val().trim();
+        const fila       = $("#nuevoLoteFilaInput").val().trim();
+        const numero     = $("#nuevoLoteNumeroInput").val().trim();
+        const estado     = $("#nuevoLoteEstadoSelect").val();
+        const notas      = $("#nuevoLoteNotasInput").val().trim();
+
+        if (!tipo || !sector || !fila || !numero || !estado) {
+            alert("Por favor complete todos los campos requeridos.");
+            return;
+        }
+
+        try {
+            await apiRequest("/plots", {
+                method: "POST",
+                body: JSON.stringify({
+                    plot_type_id: tipo,
+                    section: sector,
+                    row_num: fila,
+                    plot_number: numero,
+                    status: estado,
+                    notes: notas
+                })
+            });
+
+            alert("Lote registrado correctamente.");
+            $("#formNuevoLote")[0].reset();
+            cargarLotesAdmin(); // refresca la tabla
+        } catch (err) {
+            console.error("Error al registrar lote:", err);
+            alert(err.message || "No se pudo registrar el lote.");
+        }
+    });
+}
+
 $(function () {
 
     // ---------- LOGIN ----------
