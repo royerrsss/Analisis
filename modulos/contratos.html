@@ -1,4 +1,4 @@
-<!-- ========== MÓDULO 6: CONTRATOS (ADMIN / PERSONAL) ========== -->
+<!-- ==========CONTRATOS (ADMIN / PERSONAL)========== -->
 <section id="viewContratos">
     <section class="dashboard-section">
         <div class="row mb-3">
@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <!-- FORMULARIO NUEVO CONTRATO -->
+        <!-- FORMULARIO -->
         <div class="panel-card mb-3">
             <div class="panel-header">
                 <h3 class="section-title mb-0">Registrar nuevo contrato</h3>
@@ -20,7 +20,6 @@
                         <label for="contratoClienteSelect" class="form-label">Cliente / titular</label>
                         <select id="contratoClienteSelect" class="form-select">
                             <option value="">Seleccione el cliente</option>
-                            <!-- API: lista de clientes -->
                         </select>
                     </div>
 
@@ -28,7 +27,6 @@
                         <label for="contratoLoteSelect" class="form-label">Lote</label>
                         <select id="contratoLoteSelect" class="form-select">
                             <option value="">Seleccione el lote</option>
-                            <!-- API: lista de lotes disponibles -->
                         </select>
                     </div>
 
@@ -72,7 +70,6 @@
                                   placeholder="Condiciones especiales, observaciones o acuerdos adicionales."></textarea>
                     </div>
 
-                    <!-- En el futuro: upload del PDF del contrato (contract_pdf_path) -->
                     <div class="col-12 text-end">
                         <button type="submit" class="btn btn-sm btn-outline-secondary">
                             Guardar contrato
@@ -113,14 +110,9 @@
                         </tr>
                     </thead>
                     <tbody id="contratosTableBody">
-                        <!-- Se llenará desde API (lote_cliente + clientes + lotes) -->
                     </tbody>
                 </table>
             </div>
-
-            <p class="contratos-note">
-                * Los contratos se basan en la tabla lote_cliente, vinculada con clientes y lotes.
-            </p>
         </div>
     </section>
 </section>
