@@ -1,27 +1,22 @@
 // ======================================================
 //  SISTEMA DE ADMINISTRACIÓN DE CEMENTERIO
-//  main.js — login, registro, navegación y vistas por rol
 // ======================================================
 
-// URL base de la API (así lo tenías cuando el login te funcionó)
+// URL base de la API
 const API_BASE_URL = "http://localhost/Cemetery_API/public";
 
-// Token y usuario guardados (si existen)
+// Token y usuario guardados
 let authToken = localStorage.getItem("cem_token") || null;
 let currentUser = JSON.parse(localStorage.getItem("cem_user") || "null");
 
-// Permisos por rol (según la API: administrador, personal, cliente)
+// Permisos por rol
 const ROLE_PERMISSIONS = {
     admin:    ["dashboard", "lotes", "difuntos", "familiares", "pagos", "contratos", "reportes", "sobre"],
     personal: ["dashboard", "lotes", "pagos", "sobre"],
     cliente:  ["dashboard", "lotes", "pagos", "sobre"]
 };
 
-// ==============================
-// HELPERS DE ROL
-// ==============================
 function getAppRoleKey(userRole) {
-    // Normalizamos: quitamos espacios y pasamos a minúsculas
     if (!userRole) return "cliente";
     const r = String(userRole).trim().toLowerCase();
 
@@ -29,22 +24,18 @@ function getAppRoleKey(userRole) {
     if (r === "personal")      return "personal";
     if (r === "cliente")       return "cliente";
 
-    // Si viene cualquier otra cosa rara, lo trato como cliente
     return "cliente";
 }
 
 function getAppRoleLabel(appRoleKey) {
     switch (appRoleKey) {
-        case "administrador":    return "Administrador";
+        case "admin":    return "Administrador";
         case "personal": return "Personal";
         case "cliente":  return "Cliente";
         default:         return "Usuario";
     }
 }
 
-// ==============================
-// HELPER GENÉRICO PARA API
-// ==============================
 async function apiRequest(path, options = {}) {
     const headers = options.headers || {};
 
@@ -77,7 +68,7 @@ async function apiRequest(path, options = {}) {
 }
 
 // ==============================
-// CAMBIO ENTRE LOGIN / REGISTRO
+// LOGIN / REGISTRO
 // ==============================
 function mostrarLogin() {
     $("#registerView").addClass("d-none");
@@ -102,14 +93,12 @@ function aplicarPermisosNavbar() {
     const allowedRoutes = ROLE_PERMISSIONS[appRoleKey] || ROLE_PERMISSIONS.cliente;
     const label         = getAppRoleLabel(appRoleKey);
 
-    // Mostrar/ocultar todos los li según el rol
     $(".nav-links a").each(function () {
         const route = $(this).data("route");
         const show  = allowedRoutes.includes(route);
         $(this).closest("li").toggle(show);
     });
 
-    // Badge con rol
     $("#roleBadge")
         .removeClass("d-none")
         .text("Rol: " + label);
@@ -120,7 +109,7 @@ function aplicarPermisosNavbar() {
 // ==============================
 function iniciarSesion(user) {
     currentUser = user;
-    localStorage.setItem("cem_user", JSON.stringify(currentUser));
+    localStorage.setItem("cem_user", JSON.stringify(user));
 
     $("#loginView").addClass("d-none");
     $("#registerView").addClass("d-none");
@@ -146,7 +135,7 @@ function cerrarSesion() {
 }
 
 // ==============================
-// TÍTULOS POR RUTA Y ROL
+// TÍTULO POR RUTA Y ROL
 // ==============================
 function obtenerTitulo(route) {
     const appRoleKey = getAppRoleKey(currentUser?.role || "cliente");
@@ -184,13 +173,11 @@ function navegarA(route) {
     const appRoleKey    = getAppRoleKey(currentUser.role);
     const allowedRoutes = ROLE_PERMISSIONS[appRoleKey] || ROLE_PERMISSIONS.cliente;
 
-    // Si la ruta no está permitida para el rol, lo llevo al dashboard
     if (!allowedRoutes.includes(route)) {
         route = "dashboard";
     }
 
     $("#mainContainer").load(`modulos/${route}.html`, function () {
-        // Hooks por módulo
         if (route === "lotes") {
             const rk = getAppRoleKey(currentUser.role);
             if (rk === "cliente") {
@@ -199,7 +186,6 @@ function navegarA(route) {
                 cargarLotesAdmin();
             }
         }
-        // Después podemos agregar hooks para pagos, etc.
     });
 
     $(".nav-links a").removeClass("active");
@@ -209,10 +195,9 @@ function navegarA(route) {
 }
 
 // ==============================
-// DASHBOARD (placeholder)
+// DASHBOARD
 // ==============================
 async function cargarDashboard() {
-    // Aquí luego puedes llamar a /dashboard
 }
 
 // ==============================
@@ -284,7 +269,6 @@ async function cargarLotesCliente() {
     `);
 
     try {
-        // Más adelante podemos pasar filtros para "solo los del cliente"
         const res   = await apiRequest("/plots");
         const plots = res.data || res || [];
 
@@ -317,10 +301,6 @@ async function cargarLotesCliente() {
         $tbody.html(`<tr><td colspan="5">${err.message}</td></tr>`);
     }
 }
-
-// ==============================
-// DOCUMENT READY
-// ==============================
 $(function () {
 
     // ---------- LOGIN ----------
@@ -336,7 +316,7 @@ $(function () {
             return;
         }
 
-        apiRequest("api.php/auth/login", {
+        apiRequest("/auth/login", {
             method: "POST",
             body: JSON.stringify({ email, password })
         })

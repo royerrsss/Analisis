@@ -1,4 +1,4 @@
-<!-- ========== MÓDULO 5: PAGOS / FACTURAS (ADMIN / CLIENTE) ========== -->
+<!-- ========== PAGOS / FACTURAS (ADMIN / CLIENTE) ========== -->
 <section id="viewPagos">
     <!-- PAGOS ADMIN -->
     <section id="pagosAdmin" class="dashboard-section">
@@ -21,7 +21,7 @@
                         <label for="pagoFacturaSelect" class="form-label">Factura</label>
                         <select id="pagoFacturaSelect" class="form-select">
                             <option value="">Seleccione la factura</option>
-                            <!-- API: facturas pendientes / morosas -->
+
                         </select>
                     </div>
 
@@ -98,14 +98,9 @@
                         </tr>
                     </thead>
                     <tbody id="pagosAdminTableBody">
-                        <!-- Se llenará desde API (facturas) -->
                     </tbody>
                 </table>
             </div>
-
-            <p class="pagos-note">
-                * Los datos se obtendrán desde las tablas facturas y pagos una vez conectada la API.
-            </p>
         </div>
     </section>
 
@@ -135,7 +130,6 @@
                         </tr>
                     </thead>
                     <tbody id="pagosClienteTableBody">
-                        <!-- Se llenará desde API /clientes/mis-facturas -->
                     </tbody>
                 </table>
             </div>

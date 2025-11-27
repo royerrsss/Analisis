@@ -1,4 +1,4 @@
-<!-- ========== MÓDULO 3: DIFUNTOS (ADMIN / PERSONAL) ========== -->
+<!-- ========== DIFUNTOS (ADMIN / PERSONAL) ========== -->
 <section id="viewDifuntos">
     <section class="dashboard-section">
         <div class="row mb-3">
@@ -40,7 +40,6 @@
                         <label for="difuntoLoteSelect" class="form-label">Lote / ubicación</label>
                         <select id="difuntoLoteSelect" class="form-select">
                             <option value="">Seleccione un lote</option>
-                            <!-- API: lista de lotes/niveles -->
                         </select>
                     </div>
 
@@ -48,7 +47,6 @@
                         <label for="difuntoOrdenServicioSelect" class="form-label">Orden de servicio</label>
                         <select id="difuntoOrdenServicioSelect" class="form-select">
                             <option value="">(Opcional) asociar a una orden</option>
-                            <!-- API: ordenes_servicios -->
                         </select>
                     </div>
 
@@ -99,14 +97,10 @@
                         </tr>
                     </thead>
                     <tbody id="difuntosTableBody">
-                        <!-- Se llenará desde historial_entierros + niveles_lote -->
                     </tbody>
                 </table>
             </div>
 
-            <p class="difuntos-note">
-                * La información real se cargará desde la API (tabla historial_entierros).
-            </p>
         </div>
     </section>
 </section>
